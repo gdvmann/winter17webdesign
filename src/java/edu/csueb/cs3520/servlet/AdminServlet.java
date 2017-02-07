@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.csueb.cs3520.servlet;
+import edu.csueb.cs3520.util.UserUtils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +30,16 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String action = request.getParameter("action");
+        if(null != action){
+            if(action.equals("removeUser")){
+                UserUtils.removeUser(request.getParameter("username"));
+            }
+        }
+        
+        
+        request.setAttribute("users", UserUtils.getUsers());
         
         this.getServletContext().getRequestDispatcher("/admin.jsp").forward(request,response);
         

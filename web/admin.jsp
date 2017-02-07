@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,25 @@
         <jsp:include page="header.jsp"/>
         
         <div class=container">
-        <h1>Hello World!</h1>
+        <h1>List of Users</h1>
+        <table class="table-condensed table">
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            <c:forEach var="user" items="${users}">
+                <tr>
+                    <td>${user.username}</td>
+                    <td>${user.firstname}</td>
+                    <td>${user.lastname}</td>
+                    <td>${user.role}</td>
+                    <td><a href="AdminServlet?action=removeUser&username=${user.username}">Remove</a></td>
+                </tr>
+            </c:forEach>
+        </table>
         
          <jsp:include page="/footer.jsp"/>
         </div>
