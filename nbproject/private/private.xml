@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/bean/User.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/index.jsp</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/home.jsp</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/footer.jsp</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/AdminServlet.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/header.jsp</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/admin.jsp</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/LoginServlet.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/util/UserUtils.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -6,7 +6,7 @@
 package edu.csueb.cs3520.servlet;
 
 import edu.csueb.cs3520.bean.User;
-import edu.csueb.cs3520.util.AuthUtils;
+import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,18 +38,17 @@ public class LoginServlet extends HttpServlet {
         String message;
         
         if(action.equals("login")){
-            User user = new User();
+            User user = null;
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            user.setUsername(email);
-            user.setPassword(password);
                     
             System.out.println("Email: " + email + " Password: " + password);
-            boolean status = AuthUtils.authenticate(email, password);
+            user = DBUtils.getUSer(email, password);
             
-            request.getSession().setAttribute("user", user);
-            if(status){
+            
+            if(null != user){
                 url = "/home.jsp";
+                request.getSession().setAttribute("user", user);
                 message = null;
             }else{
                 message = "Please enter correct credentials";

@@ -34,7 +34,13 @@
                     <td>${user.firstname}</td>
                     <td>${user.lastname}</td>
                     <td>${user.role}</td>
-                    <td><a href="AdminServlet?action=removeUser&username=${user.username}">Remove</a></td>
+                    <td>
+                <form action="AdminServlet" method="post">
+                    <input type="hidden" name="action" value="removeUser"/>
+                    <input type="hidden" name="username" value="${user.username}"/>
+                    <input class="btn btn-xs btn-danger" type="submit" value="Remove"/>
+                </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
