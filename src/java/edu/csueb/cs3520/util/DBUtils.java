@@ -5,6 +5,7 @@
  */
 package edu.csueb.cs3520.util;
 
+import edu.csueb.cs3520.bean.Post;
 import edu.csueb.cs3520.bean.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,7 +58,9 @@ public class DBUtils {
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String role = rs.getString("role");
+                int id = rs.getInt("id");
                 user = new User(name, pw, role, firstname, lastname);
+                user.setId(id);
                 
             }
             rs.close();
@@ -102,4 +105,53 @@ public class DBUtils {
         return users;
     }
     
+    
+    public static List<Post> getPosts(){
+        List<Post> posts = new ArrayList();
+   
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From Post");
+
+
+            Post post = null;
+            while(rs.next()){
+                String content = rs.getString("content");
+                int userId = rs.getInt("userid");
+
+                post = new Post(userId, content);
+                posts.add(post);
+        }
+        rs.close();
+        stmt.close();
+        connection.close();
+        
+    } catch(Exception e) {
+        e.printStackTrace();
+}
+        return posts;
+
+    }
+    
+    public static void createPost(int userid, String content){
+         try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            
+            String sqlString = "INSERT INTO Post (userid, content) VALUES " + 
+                    "('" + userid + "', '" + content + "')";
+            Statement stmt = connection.createStatement();
+            int rowcount = stmt.executeUpdate(sqlString);
+            
+            stmt.close();
+            connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
 }

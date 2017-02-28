@@ -5,11 +5,11 @@
  */
 package edu.csueb.cs3520.servlet;
 
-import edu.csueb.cs3520.bean.User;
 import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Post", urlPatterns = {"/Post"})
+public class Post extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,37 +32,15 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
         String action = request.getParameter("action");
-        String url = "/index.jsp";
-        String message;
         
-        if(action.equals("login")){
-            User user = null;
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-                    
-            System.out.println("Email: " + email + " Password: " + password);
-            user = DBUtils.getUSer(email, password);
-            
-            
-            if(null != user){
-                url = "/home.jsp";
-                request.getSession().setAttribute("user", user);
-                message = null;
-                request.setAttribute("posts", DBUtils.getPosts());
-                
-            }else{
-                message = "Please enter correct credentials";
-            }
-            request.setAttribute("error_message", message);
+        if(action.equals("create")){
+
+            DBUtils.createPost(Integer.parseInt(request.getParameter("userid")), 
+                    request.getParameter("content"));
         }
-        if(action.equals("logout")){
-            request.getSession().setAttribute("user", null);
-            
-        }
-        this.getServletContext().getRequestDispatcher(url).forward(request, response);
+        request.setAttribute("posts", DBUtils.getPosts());
+        this.getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

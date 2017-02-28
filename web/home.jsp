@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +27,26 @@
                 Your password is ${sessionScope.user.password}
             </p>
             </div>
+            <div class="panel panel-default">
+                    <div class=""panel-heading">Create new Post</div>
+                    <div class="panel-body">
+                        <form action="Post" method="post">
+                            <input type="hidden" name="action" value="create"/>
+                            <input type="hidden" name="userid" value="${sessionScope.user.id}"/>
+                            <textarea class="form-control" rows="5" name="content">
+                                
+
+                            </textarea>
+                            <input type="submit" class="btn btn-default" value="Submit"/>
+                        </form>
+                    </div>
+                </div>
+            <c:forEach var="post" items="${posts}">                
+                <div class="panel panel-default">
+                    <div class="panel-heading">By: ${post.userId}</div>
+                    <div class="panel-body"><p>${post.content}</p></div>
+                </div>
+            </c:forEach>
             <p>
                 <!-- this is how you comment ${sessionScope.user.username} -->
             </p>

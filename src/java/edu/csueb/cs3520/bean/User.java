@@ -17,6 +17,15 @@ public class User implements Serializable{
     private String role; //"admin" or "user"
     private String firstname;
     private String lastname;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public User() {
     }
