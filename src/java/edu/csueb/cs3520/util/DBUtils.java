@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,8 +172,8 @@ public class DBUtils {
         e.printStackTrace();
 }
 
-        
-                return books;
+       
+    return books;
 
     }
     
@@ -184,6 +185,66 @@ public class DBUtils {
             
             String sqlString = "INSERT INTO Post (userid, content) VALUES " + 
                     "('" + userid + "', '" + content + "')";
+            Statement stmt = connection.createStatement();
+            int rowcount = stmt.executeUpdate(sqlString);
+            
+            stmt.close();
+            connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+                }
+
+    }
+    
+    public static void removeBook(String bookname){
+        try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            
+            String sqlString = "DELETE FROM Book Where bookname = '" + bookname + "'";
+            Statement stmt = connection.createStatement();
+            int rowcount = stmt.executeUpdate(sqlString);
+            
+            stmt.close();
+            connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    
+    public static void createBook(String bookname, String author, String description, String year){
+         try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            
+            String sqlString = "INSERT INTO Book (bookname, author, description, year) VALUES " + 
+                    "('" + bookname + "', '" + author + "', '" + description + "', '" + year + "')";
+            Statement stmt = connection.createStatement();
+            int rowcount = stmt.executeUpdate(sqlString);
+            
+            stmt.close();
+            connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+                }
+
+    }
+    
+    public static void editBook(String bookname, String author, String description, String year){
+         try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            
+            String sqlString = "UPDATE Book SET " +
+                            "bookname = '" + bookname + "', " +
+                            "author = '" + author + "', " +
+                            "description = '" + description + "', " +
+                            "year = '" + year + "' " +
+                            "WHERE bookname = '" + bookname + "'";
+                                
             Statement stmt = connection.createStatement();
             int rowcount = stmt.executeUpdate(sqlString);
             

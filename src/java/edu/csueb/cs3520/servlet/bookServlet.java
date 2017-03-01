@@ -28,8 +28,53 @@ public class bookServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
+        int state;
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+
+        String action = request.getParameter("action");
+        if(null != action){
+            if(action.equals("removeBook")){
+                DBUtils.removeBook(request.getParameter("bookname"));
+            }
+            
+            if(action.equals("create")){
+                if(state == 1){
+                   DBUtils.editBook(request.getParameter("bookname"),
+                    request.getParameter("author"),
+                    request.getParameter("description"),
+                    request.getParameter("year")); 
+                   
+                                     
+                   state = 0;
+                }
+              else{
+                DBUtils.createBook(request.getParameter("bookname"), 
+                        request.getParameter("author"),
+                        request.getParameter("description"),
+                        request.getParameter("year"));
+                }
+            }
+            if(action.equals("editBook")){
+                /*this is how you comment DBUtils.editBook(request.getParameter("bookname"),
+                    request.getParameter("author"),
+                    request.getParameter("description"),
+                    request.getParameter("year")); 
+                */
+            
+            request.setAttribute("book1", request.getParameter("bookname"));
+            request.setAttribute("author1", request.getParameter("author"));
+            request.setAttribute("description1", request.getParameter("description"));
+            request.setAttribute("year1", request.getParameter("year"));
+            
+            state = 1;
+            }
+        }
+        
         
         request.setAttribute("books", DBUtils.getBooks());
         
