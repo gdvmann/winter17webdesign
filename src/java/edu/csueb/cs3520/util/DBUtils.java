@@ -5,6 +5,7 @@
  */
 package edu.csueb.cs3520.util;
 
+import edu.csueb.cs3520.bean.Book;
 import edu.csueb.cs3520.bean.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -102,4 +103,36 @@ public class DBUtils {
         return users;
     }
     
+    
+        public static List<Book> getBooks(){
+        List<Book> books = new ArrayList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * From Book");
+
+
+            Book book = null;
+            while(rs.next()){
+                String bookname = rs.getString("bookname");
+                String author = rs.getString("author");
+                String description = rs.getString("description");
+                String year = rs.getString("year");
+              
+                book = new Book(bookname, author, description, year);
+                books.add(book);
+        }
+        rs.close();
+        stmt.close();
+        connection.close();
+        
+    } catch(Exception e) {
+        e.printStackTrace();
+}
+
+        return books;
+    }
 }
