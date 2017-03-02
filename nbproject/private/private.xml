@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/bean/User.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/index.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/bean/Book.java</file>
             <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/util/DBUtils.java</file>
             <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/home.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/bookServlet.java</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/footer.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/HomeServlet.java</file>
             <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/AdminServlet.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/header.jsp</file>
             <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/LoginServlet.java</file>
             <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/admin.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/bean/User.java</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/index.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/src/java/edu/csueb/cs3520/servlet/Post.java</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/books.jsp</file>
+            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/winter17webdesign/web/header.jsp</file>
         </group>
     </open-files>
 </project-private>
