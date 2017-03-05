@@ -30,7 +30,7 @@ CREATE TABLE `book` (
   `year` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `bookname_UNIQUE` (`bookname`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,62 @@ INSERT INTO `book` VALUES (1,'On the Origin of Species','Charles Darwin','A work
 UNLOCK TABLES;
 
 --
+-- Table structure for table `movie`
+--
+
+DROP TABLE IF EXISTS `movie`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `moviename` varchar(100) NOT NULL,
+  `description` varchar(900) NOT NULL,
+  `rating` varchar(45) NOT NULL,
+  `year` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `moviename_UNIQUE` (`moviename`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movie`
+--
+
+LOCK TABLES `movie` WRITE;
+/*!40000 ALTER TABLE `movie` DISABLE KEYS */;
+INSERT INTO `movie` VALUES (10,'Movie Title','Description','Rating','Year');
+/*!40000 ALTER TABLE `movie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `music`
+--
+
+DROP TABLE IF EXISTS `music`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `music` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `artist` varchar(100) NOT NULL,
+  `album` varchar(900) NOT NULL,
+  `year` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `title_UNIQUE` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `music`
+--
+
+LOCK TABLES `music` WRITE;
+/*!40000 ALTER TABLE `music` DISABLE KEYS */;
+INSERT INTO `music` VALUES (1,'Song Title','Artist','Album','1999');
+/*!40000 ALTER TABLE `music` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `post`
 --
 
@@ -52,12 +108,12 @@ DROP TABLE IF EXISTS `post`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content` varchar(500) DEFAULT NULL,
-  `userid` int(11) NOT NULL,
+  `content` varchar(900) DEFAULT NULL,
+  `userid` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UserID_Post_FK_idx` (`userid`),
-  CONSTRAINT `UserID_Post_FK` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  CONSTRAINT `UserID_Post_FK` FOREIGN KEY (`userid`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +122,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (1,'poasdfs',1),(3,'                                1234\r\n\r\n                            ',1),(4,'11233344                                \r\n\r\n                            ',1),(5,'                                \r\n111\r\n                            ',1);
+INSERT INTO `post` VALUES (19,'                                \r\n\r\n                            another one','john.smith@gmail.com'),(21,'                                \r\nand another one\r\n                            ','john.smith@gmail.com'),(22,'                                \r\n\r\n                            yet another one','john.smith@gmail.com'),(23,'                                \r\n\r\n                            yet another one','john.smith@gmail.com'),(24,'                                \r\n\r\n                            yet another one','john.smith@gmail.com'),(28,'                                \r\n\r\n                            yesy','clark.kent@gmail.com'),(29,'Hey I am reading: On the Origin of Species','clark.kent@gmail.com'),(30,'Hey I am reading: The Selfish Gene','clark.kent@gmail.com'),(31,'Hey I am reading: A Universe from Nothing','clark.kent@gmail.com'),(32,'Hey I am reading: What Is Life?','clark.kent@gmail.com'),(33,'Hey I am reading: Bad Science','clark.kent@gmail.com'),(34,'Hey I am reading: Bad Science','clark.kent@gmail.com'),(36,'Hey I am watching: Movie Title','john.smith@gmail.com');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-04 21:59:10
+-- Dump completed on 2017-03-05  6:38:13
