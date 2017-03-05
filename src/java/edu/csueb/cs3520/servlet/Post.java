@@ -36,9 +36,12 @@ public class Post extends HttpServlet {
         
         if(action.equals("create")){
 
-            DBUtils.createPost(Integer.parseInt(request.getParameter("userid")), 
+            DBUtils.createPost(request.getParameter("userid"), 
                     request.getParameter("content"));
         }
+        if(action.equals("removePost")){
+                DBUtils.removePost(request.getParameter("id"));
+            }
         request.setAttribute("posts", DBUtils.getPosts());
         this.getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
     }

@@ -10,18 +10,28 @@ package edu.csueb.cs3520.bean;
  * @author Dev
  */
 public class Post {
-    private int userId;
+    private String userId;
     private String content;
+    private int id;
 
-    public Post(int UserId, String content) {
+    public Post(String UserId, String content, int id) {
         this.userId = UserId;
         this.content = content;
+        this.id = id;
     }
-    public int getUserId() {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int UserId) {
+    public void setUserId(String UserId) {
         this.userId = UserId;
     }
 

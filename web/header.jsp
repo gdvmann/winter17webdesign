@@ -4,7 +4,7 @@
     Author     : Dev
 --%>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -13,8 +13,8 @@
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="HomeServlet">Home</a></li>
                   <li><a href="bookServlet">Books</a></li>
-                  <li><a href="#">Page 2</a></li>
-                  <li><a href="#">Page 3</a></li>
+                  <li><a href="MovieServlet">Movies</a></li>
+                  <li><a href="MusicServlet">Music</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href=""><span class="glyphicon glyphicon-user"></span> 

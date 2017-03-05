@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class bookServlet extends HttpServlet {
+public class MovieServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,64 +29,59 @@ public class bookServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-
-        int state;
-        
+    int state;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-
-        String action = request.getParameter("action");
-        String url = "/books.jsp";
+     String action = request.getParameter("action");
+        String url = "/movies.jsp";
         
         if(null != action){
-            if(action.equals("removeBook")){
-                DBUtils.removeBook(request.getParameter("bookname"));
+            if(action.equals("removeMovie")){
+                DBUtils.removeMovie(request.getParameter("moviename"));
             }
             
             if(action.equals("create")){
                 if(state == 1){
-                   DBUtils.editBook(request.getParameter("bookname"),
-                    request.getParameter("author"),
+                   DBUtils.editMovie(request.getParameter("moviename"),
                     request.getParameter("description"),
+                    request.getParameter("rating"),
                     request.getParameter("year")); 
                    
                                      
                    state = 0;
                 }
               else{
-                DBUtils.createBook(request.getParameter("bookname"), 
-                        request.getParameter("author"),
+                DBUtils.createMovie(request.getParameter("moviename"), 
                         request.getParameter("description"),
+                        request.getParameter("rating"),
                         request.getParameter("year"));
                 }
             }
-            if(action.equals("editBook")){
-                /*this is how you comment DBUtils.editBook(request.getParameter("bookname"),
-                    request.getParameter("author"),
-                    request.getParameter("description"),
-                    request.getParameter("year")); 
-                */
-            
-            request.setAttribute("book1", request.getParameter("bookname"));
-            request.setAttribute("author1", request.getParameter("author"));
+            if(action.equals("editMovie")){
+                            
+            request.setAttribute("movie1", request.getParameter("moviename"));
             request.setAttribute("description1", request.getParameter("description"));
+            request.setAttribute("rating1", request.getParameter("rating"));
             request.setAttribute("year1", request.getParameter("year"));
             
             state = 1;
             }
             
-            if(action.equals("selectBook")){
-                DBUtils.createPost(request.getParameter("userid") ,"Hey I am reading: " + request.getParameter("bookname"));
+            if(action.equals("selectMovie")){
+                DBUtils.createPost(request.getParameter("userid") ,"Hey I am watching: " + request.getParameter("moviename"));
                 url = "/home.jsp";
                 request.setAttribute("posts", DBUtils.getPosts());
             }
         }
         
         
-        request.setAttribute("books", DBUtils.getBooks());
+        request.setAttribute("movies", DBUtils.getMovies());
         
-        this.getServletContext().getRequestDispatcher(url).forward(request,response);
+        this.getServletContext().getRequestDispatcher(url).forward(request,response);   
+        
+        
         
     }
 

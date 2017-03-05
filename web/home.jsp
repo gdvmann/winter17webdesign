@@ -18,7 +18,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp"/>
-        
+        <br>
         <div class="container">
             <div class="container">
             <div class="jumbotron">
@@ -32,7 +32,7 @@
                     <div class="panel-body">
                         <form action="Post" method="post">
                             <input type="hidden" name="action" value="create"/>
-                            <input type="hidden" name="userid" value="${sessionScope.user.id}"/>
+                            <input type="hidden" name="userid" value="${sessionScope.user.username}"/>
                             <textarea class="form-control" rows="5" name="content">
                                 
 
@@ -45,6 +45,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">By: ${post.userId}</div>
                     <div class="panel-body"><p>${post.content}</p></div>
+                    <form action="Post" method="post">
+                    <input type="hidden" name="action" value="removePost"/>
+                    <input type="hidden" name="id" value="${post.id}"/>
+                    <input class="btn btn-xs btn-danger" type="submit" value="Remove"/>
+                    
+                </form>
                 </div>
             </c:forEach>
             <p>
