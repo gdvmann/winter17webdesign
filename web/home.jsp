@@ -24,7 +24,7 @@
             <div class="jumbotron">
             <h1>Hello, ${sessionScope.user.username}</h1>
             <p>
-                Your password is ${sessionScope.user.password}
+                Welcome to your Homepage
             </p>
             </div>
             <div class="panel panel-default">
