@@ -5,11 +5,13 @@
  */
 package edu.csueb.cs3520.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dev
  */
-public class Movie {
+public class Movie implements Serializable{
     private String moviename;
     private String description;
     private String rating;

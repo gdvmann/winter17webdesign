@@ -77,6 +77,7 @@ public class MovieServlet extends HttpServlet {
         }
         
         
+        
         request.setAttribute("movies", DBUtils.getMovies());
         
         this.getServletContext().getRequestDispatcher(url).forward(request,response);   

@@ -8,6 +8,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -16,6 +17,17 @@
         <script src="include/js/jquery-3.1.1.min.js"></script>
         <script src="include/js/boostrap.min.js"></script>
     </head>
+    
+    <style>
+    .jumbotron { 
+    background-color: #006699; /* Orange */
+    color: #ffffff;
+    }
+    .bg-blue{
+    background-color: #006699; /* Orange */
+    color: #ffffff;    
+    }
+    </style>
     <body>
         <jsp:include page="header.jsp"/>
         <br>
@@ -43,7 +55,7 @@
                 </div>
             <c:forEach var="post" items="${posts}">                
                 <div class="panel panel-default">
-                    <div class="panel-heading">By: ${post.userId}</div>
+                    <div class="panel-heading bg-blue">By: ${post.userId}</div>
                     <div class="panel-body"><p>${post.content}</p></div>
                     <form action="Post" method="post">
                     <input type="hidden" name="action" value="removePost"/>

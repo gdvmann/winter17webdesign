@@ -5,11 +5,13 @@
  */
 package edu.csueb.cs3520.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dev
  */
-public class Music {
+public class Music implements Serializable{
     private String title;
     private String artist;
     private String album;

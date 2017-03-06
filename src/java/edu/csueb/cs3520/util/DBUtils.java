@@ -112,7 +112,24 @@ public class DBUtils {
         return users;
     }
     
-    
+    public static void createUser(String username, String password, String firstName, String lastName, String role){
+         try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            
+            String sqlString = "INSERT INTO User (username, password, firstName, lastName, role) VALUES " + 
+                    "('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + role + "')";
+            Statement stmt = connection.createStatement();
+            int rowcount = stmt.executeUpdate(sqlString);
+            
+            stmt.close();
+            connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+                }
+
+    }
 
     public static List<Post> getPosts(){
         List<Post> posts = new ArrayList();

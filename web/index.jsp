@@ -18,10 +18,11 @@ and open the template in the editor.
     <body> <!-- this is how you comment -->
         <div class="container-fluid">
             <c:if test="${error_message != null}">
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> ${error_message}
+                <div class="alert alert-info">
+                    <strong> ${error_message}</strong>
                 </div>
             </c:if>
+            
             <form class="form-horizontal" action="Login" method="post">
               <input type="hidden" name="action" value="login"/>
               <div class="form-group">
@@ -40,6 +41,7 @@ and open the template in the editor.
                    <label class="control-label col-sm-2"></label>
                   <div class="col-sm-10">
                     <input class="btn btn-default" type="submit" value="Login"/>
+                    <a href="RegisterServlet" class="btn btn-info" role="button">Register</a>
                   </div>
                </div>
             </form>
