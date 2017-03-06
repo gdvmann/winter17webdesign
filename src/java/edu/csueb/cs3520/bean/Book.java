@@ -13,9 +13,9 @@ import java.io.Serializable;
  * @author Dev
  */
 public class Book implements Serializable{
-    private String bookname; // usernames are email addrs
+    private String bookname;
     private String author;
-    private String description; //"admin" or "user"
+    private String description;
     private String year; 
 
     public Book(String bookname, String author, String description, String year) {

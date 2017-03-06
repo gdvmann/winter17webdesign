@@ -50,6 +50,8 @@ public class LoginServlet extends HttpServlet {
                 url = "/home.jsp";
                 request.getSession().setAttribute("user", user);
                 message = null;
+                request.setAttribute("posts", DBUtils.getPosts());
+                
             }else{
                 message = "Please enter correct credentials";
             }

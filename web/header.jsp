@@ -3,18 +3,24 @@
     Created on : Feb 1, 2017, 8:51:53 PM
     Author     : Dev
 --%>
-
-<nav class="navbar navbar-default">
+<style>
+    .navbar-inverse{
+    background-color: #006699; 
+    
+    }
+    
+    </style>
+<nav class="navbar-inverse navbar-fixed-top">
             <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <a class="navbar-brand" href="#">WebSiteName</a>
+                  <a class="navbar-brand" href="#">Awesome Website</a>
                 </div>
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="bookServlet">Page 1</a></li>
-                  <li><a href="#">Page 2</a></li>
-                  <li><a href="#">Page 3</a></li>
+                  <li><a href="HomeServlet">Home</a></li>
+                  <li><a href="bookServlet">Books</a></li>
+                  <li><a href="MovieServlet">Movies</a></li>
+                  <li><a href="MusicServlet">Music</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href=""><span class="glyphicon glyphicon-user"></span> 

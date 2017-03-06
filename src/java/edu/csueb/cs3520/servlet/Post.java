@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package edu.csueb.cs3520.servlet;
-import edu.csueb.cs3520.util.DBUtils;
 
+import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "Post", urlPatterns = {"/Post"})
+public class Post extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,21 +32,18 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         String action = request.getParameter("action");
+        
+        if(action.equals("create")){
 
-        
-        if(null != action){
-            if(action.equals("removeUser")){
-                DBUtils.removeUser(request.getParameter("username"));
-            }
+            DBUtils.createPost(request.getParameter("userid"), 
+                    request.getParameter("content"));
         }
-        
-        
-        request.setAttribute("users", DBUtils.getUsers());
-        
-        this.getServletContext().getRequestDispatcher("/admin.jsp").forward(request,response);
-        
+        if(action.equals("removePost")){
+                DBUtils.removePost(request.getParameter("id"));
+            }
+        request.setAttribute("posts", DBUtils.getPosts());
+        this.getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

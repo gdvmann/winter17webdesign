@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package edu.csueb.cs3520.servlet;
-import edu.csueb.cs3520.util.DBUtils;
 
+import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class AdminServlet extends HttpServlet {
+public class MusicServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,22 +28,61 @@ public class AdminServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    int state;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String action = request.getParameter("action");
-
+    String action = request.getParameter("action");
+        String url = "/music.jsp";
         
         if(null != action){
-            if(action.equals("removeUser")){
-                DBUtils.removeUser(request.getParameter("username"));
+            if(action.equals("removeMusic")){
+                DBUtils.removeMusic(request.getParameter("title"));
+            }
+            
+            if(action.equals("create")){
+                if(state == 1){
+                   DBUtils.editMusic(request.getParameter("title"),
+                    request.getParameter("artist"),
+                    request.getParameter("album"),
+                    request.getParameter("year")); 
+                   
+                                     
+                   state = 0;
+                }
+              else{
+                DBUtils.createMusic(request.getParameter("title"), 
+                        request.getParameter("artist"),
+                        request.getParameter("album"),
+                        request.getParameter("year"));
+                }
+            }
+            if(action.equals("editMusic")){
+                            
+            request.setAttribute("title1", request.getParameter("title"));
+            request.setAttribute("artist1", request.getParameter("artist"));
+            request.setAttribute("album1", request.getParameter("album"));
+            request.setAttribute("year1", request.getParameter("year"));
+            
+            state = 1;
+            }
+            
+            if(action.equals("selectMusic")){
+                DBUtils.createPost(request.getParameter("userid") ,"Hey I am listening to: " + request.getParameter("title"));
+                url = "/home.jsp";
+                request.setAttribute("posts", DBUtils.getPosts());
             }
         }
         
         
-        request.setAttribute("users", DBUtils.getUsers());
+        request.setAttribute("songs", DBUtils.getMusic());
         
-        this.getServletContext().getRequestDispatcher("/admin.jsp").forward(request,response);
+        this.getServletContext().getRequestDispatcher(url).forward(request,response);   
+        
+        
+            
         
     }
 

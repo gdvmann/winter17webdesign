@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package edu.csueb.cs3520.servlet;
-import edu.csueb.cs3520.util.DBUtils;
 
+import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class AdminServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,21 +30,28 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       
         String action = request.getParameter("action");
-
-        
+        String url = "/register.jsp";
         if(null != action){
-            if(action.equals("removeUser")){
-                DBUtils.removeUser(request.getParameter("username"));
-            }
+           if(action.equals("create")){
+                
+                DBUtils.createUser(request.getParameter("email"), 
+                        request.getParameter("password"),
+                        request.getParameter("firstname"),
+                        request.getParameter("lastname"),
+                        "Admin");
+                
+                url = "/index.jsp";
+                request.setAttribute("error_message", "Registration Success");
+                }
+           if(action.equals("cancel")){
+           url = "/index.jsp";
+               
+           }
+            
         }
-        
-        
-        request.setAttribute("users", DBUtils.getUsers());
-        
-        this.getServletContext().getRequestDispatcher("/admin.jsp").forward(request,response);
-        
+        this.getServletContext().getRequestDispatcher(url).forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

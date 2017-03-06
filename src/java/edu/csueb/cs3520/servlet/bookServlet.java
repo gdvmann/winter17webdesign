@@ -28,12 +28,65 @@ public class bookServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
+        int state;
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+
+        String action = request.getParameter("action");
+        String url = "/books.jsp";
+        
+        if(null != action){
+            if(action.equals("removeBook")){
+                DBUtils.removeBook(request.getParameter("bookname"));
+            }
+            
+            if(action.equals("create")){
+                if(state == 1){
+                   DBUtils.editBook(request.getParameter("bookname"),
+                    request.getParameter("author"),
+                    request.getParameter("description"),
+                    request.getParameter("year")); 
+                   
+                                     
+                   state = 0;
+                }
+              else{
+                DBUtils.createBook(request.getParameter("bookname"), 
+                        request.getParameter("author"),
+                        request.getParameter("description"),
+                        request.getParameter("year"));
+                }
+            }
+            if(action.equals("editBook")){
+                /*this is how you comment DBUtils.editBook(request.getParameter("bookname"),
+                    request.getParameter("author"),
+                    request.getParameter("description"),
+                    request.getParameter("year")); 
+                */
+            
+            request.setAttribute("book1", request.getParameter("bookname"));
+            request.setAttribute("author1", request.getParameter("author"));
+            request.setAttribute("description1", request.getParameter("description"));
+            request.setAttribute("year1", request.getParameter("year"));
+            
+            state = 1;
+            }
+            
+            if(action.equals("selectBook")){
+                DBUtils.createPost(request.getParameter("userid") ,"Hey I am reading: " + request.getParameter("bookname"));
+                url = "/home.jsp";
+                request.setAttribute("posts", DBUtils.getPosts());
+            }
+        }
+        
+        
         request.setAttribute("books", DBUtils.getBooks());
         
-        this.getServletContext().getRequestDispatcher("/books.jsp").forward(request,response);
+        this.getServletContext().getRequestDispatcher(url).forward(request,response);
         
     }
 

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package edu.csueb.cs3520.servlet;
-import edu.csueb.cs3520.util.DBUtils;
 
+import edu.csueb.cs3520.util.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dev
  */
-public class AdminServlet extends HttpServlet {
+public class MovieServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,22 +28,61 @@ public class AdminServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    int state;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String action = request.getParameter("action");
-
+     String action = request.getParameter("action");
+        String url = "/movies.jsp";
         
         if(null != action){
-            if(action.equals("removeUser")){
-                DBUtils.removeUser(request.getParameter("username"));
+            if(action.equals("removeMovie")){
+                DBUtils.removeMovie(request.getParameter("moviename"));
+            }
+            
+            if(action.equals("create")){
+                if(state == 1){
+                   DBUtils.editMovie(request.getParameter("moviename"),
+                    request.getParameter("description"),
+                    request.getParameter("rating"),
+                    request.getParameter("year")); 
+                   
+                                     
+                   state = 0;
+                }
+              else{
+                DBUtils.createMovie(request.getParameter("moviename"), 
+                        request.getParameter("description"),
+                        request.getParameter("rating"),
+                        request.getParameter("year"));
+                }
+            }
+            if(action.equals("editMovie")){
+                            
+            request.setAttribute("movie1", request.getParameter("moviename"));
+            request.setAttribute("description1", request.getParameter("description"));
+            request.setAttribute("rating1", request.getParameter("rating"));
+            request.setAttribute("year1", request.getParameter("year"));
+            
+            state = 1;
+            }
+            
+            if(action.equals("selectMovie")){
+                DBUtils.createPost(request.getParameter("userid") ,"Hey I am watching: " + request.getParameter("moviename"));
+                url = "/home.jsp";
+                request.setAttribute("posts", DBUtils.getPosts());
             }
         }
         
         
-        request.setAttribute("users", DBUtils.getUsers());
         
-        this.getServletContext().getRequestDispatcher("/admin.jsp").forward(request,response);
+        request.setAttribute("movies", DBUtils.getMovies());
+        
+        this.getServletContext().getRequestDispatcher(url).forward(request,response);   
+        
+        
         
     }
 
